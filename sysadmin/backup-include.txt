@@ -1,0 +1,128 @@
+###############################
+# Selection of files to copy for application synchronization between several
+# machines. The resulting archive can be saved to an USB removeable drive, then
+# files can be copied to another user directory to synchronize their settings.
+# NOTE: these files are probably important. You should have a backup of them
+# somewhere else, in a safe place, offline and encrypted.
+###############################
+
+#TODO: copyright
+#TODO: QUOTE THE STRINGS !!!
+#TODO: Zenity GUI ?
+#TODO: Optionally zip it. Be aware that that you will need free drive space
+###### on the destination machine to unzip it. To avoid this you can use
+###### archivemount or /usr/lib/gvfs/gvfsd-archive.
+#TODO: optionnally encrypt it!
+
+
+### Liferea Feeds and reading state ###
+# Liferea must not be running for this to work
+~/.liferea-1.8/feedlist.opml
+~/.liferea-1.8/liferea.db
+~/.liferea-1.8/cache/favicons/*
+
+
+#SSH Keys, config, authorized and known hosts
+~/.ssh/
+#gSTM configured SSH tunnels
+~/.gstm
+
+#Electricsheep
+##Downloaded sheeps
+~/.electricsheep/*.avi
+##Preferences
+~/.electricsheep/preferences.xml
+
+#Gmapctacher config
+~/.googlemaps/gmapcatcher.conf
+#Gmapcatcher downloaded tiles
+~/.googlemaps/tiles
+#Gmapcatcher locations and markers
+~/.googlemaps/markers
+~/.googlemaps/locations
+
+
+### Firefox bookmarks, history, passwords ###
+#See kb.mozillazine.org/Profile_folder_-_Firefox
+# This can also be done by using Firefox's "Sync" feature
+~/.mozilla/firefox/*.default/places.sqlite
+~/.mozilla/firefox/*.default/signons.sqlite
+key3.db
+###certificate exceptions
+~/.mozilla/firefox/*.default/cert_override.txt
+#Security certificates
+cert8.db
+#Individual settings for pages
+content-prefs.sqlite
+#Addons information and update URLS
+addons.sqlite
+#cookies
+cookies.sqlite
+#downloads history
+downloads.sqlite
+#Saved form data
+formhistory.sqlite
+#Toolbar and window size/position settings
+localstore.rdf
+#Action to perform when downloading certain types of files
+mimeTypes.rdf
+#Permission database for cookies, pop-up blocking, image loading and add-ons installation
+permissions.sqlite 
+#All preferences
+prefs.js
+#search engine plugins and their icons for the Search Bar
+searchplugins
+
+### Firefox scrapbook directory ###
+### Please create an HTML index before saving this, this will allow browsing
+### the scrapbook archive with any web browser, even without the Scrapbook
+### extension.
+
+
+### Thunderbird mails, calendar and tasks ###
+~/.thunderbird/*.default/ImapMail/*
+~/.thunderbird/*.default/Mail/Local Folders/*
+~/.thunderbird/*.default/abook*.mab
+
+### GNOME Keyrings ###
+~/.gnome2/keyrings/
+
+#personnal GPG keys
+~/.gnupg/secring.gpg
+~/.gnupg/pubring.gpg
+
+### Mumble config and certificate ###
+~/.config/Mumble/Mumble.conf
+
+
+### Transmission running torrents, DHT table and settings ###
+~/.config/transmission/torrents/*
+~/.config/transmission/settings.json
+~/.config/transmission/dht.dat
+
+### Pidgin account list, buddy list and logs ###
+~/.purple/blist.xml
+~/.purple/accounts.xml
+~/.purple/otr.fingerprints
+~/.purple/otr.private_key
+###Pidgin chat logs
+~/.purple/logs
+###Pidgin preferences
+~/.purple/prefs.xml
+###Predefined statuses
+~/.purple/status.xml
+
+### Osmo calendar, tasks, contacts and notes ###
+~/.osmo/
+
+### Xpad notes ###
+~/.config/xpad
+
+#PCSX Memcards
+~/.pcsx/memcards
+
+### Custom files, documents ... ####
+
+
+### What else ? ###
+

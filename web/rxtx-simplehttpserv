@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#
+# ------------------------------------------------------------------
+#    made by sputnick in da FreAkY lApPy lAb (c) 2009
+#    gilles.quenot <AT> gmail <DOT> com
+#	 Idea from smecher.
+#    Adapted for rxtx GNU/Linux https://rxtx-linux.googlecode.com/
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#       (see http://www.gnu.org/licenses/gpl.html).
+# ------------------------------------------------------------------
+#   ,,_
+#  o"  )@
+#   ''''
+# ------------------------------------------------------------------
+# Version 0.2.1
+#
+#
+#Script permettant de lancer un serveur web à la volee dans le dossier courant.
+#(Si vous etes derriere un routeur, il faut le configurer pour que le port 8000
+#soit forwarde vers votre adresse IP locale)
+#
+#  Questions et infos : http://forum.ubuntu-fr.org/viewtopic.php?id=364489
+#
+#  Prerequis:
+#    zenity
+#
+######################################################
+
+
+DIR=${1:-$PWD}
+
+if nc -z -w2 localhost 8000; then
+    zenity --error --title="error:" --text="Le port 8000 est déjà occupé! \n\nBye..."
+    exit 1
+fi
+
+zenity --question --text="Voulez vous partager <b>$DIR\</b> en HTTP sur le port 8000?" || exit 0
+
+python -m SimpleHTTPServer & pro=$!
+
+while true; do
+    zenity --info  --text="<b>$DIR</b> partagé en HTTP sur le port 8000. Appuyez pour éteindre le serveur"
+
+    if zenity --question --title="Eteindre le serveur" --text="Êtes vous sûr? Ca va couper!"; then
+        kill $pro
+        exit $?
+    fi
+done
+
