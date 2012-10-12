@@ -1,4 +1,5 @@
 #!/bin/sh
+#from https://help.github.com/articles/changing-author-info
 
 git filter-branch --env-filter '
 
