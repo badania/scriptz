@@ -11,7 +11,7 @@ MISC_COMMANDS="apropos inotifywait xclipboard xclip hier watch wmctrl yes pdfima
 
 PACKAGEMANAGEMENT_COMMANDS="apt-cache apt-get aptitude dpkg dpkg-divert"
 
-NET_COMMANDS="ssh-keygen ssh iptables iptables-apply iptables-restore iptables-save ufw smb.conf ssh ssh_config sshd sshd_config arpspoof dig ping mtr traceroute netstat nmap ss curl wget rsync wireshark tshark transmission-daemon iceweasel" 
+NET_COMMANDS="ssh-keygen ssh iptables iptables-apply iptables-restore iptables-save ufw smb.conf ssh ssh_config sshd sshd_config arpspoof dig ping mtr traceroute netstat nmap ss curl wget rsync wireshark tshark transmission-daemon iceweasel torify" 
 
 MEDIA_COMMANDS="youtube-dl cclive ffmpeg mplayer gimp vlc scrot feh"
 
