@@ -9,6 +9,7 @@
 # Improved by nodiscc <nodiscc@gmail.com>
 # Original Author unknown. (Sorry!)
 # CPU detection function courtesty of phihag <phihag@phihag.de>
+# TODO: allow downloading album as ZIP file (http://imgur.com/albumurl/zip)
  
 import sys
 import os
