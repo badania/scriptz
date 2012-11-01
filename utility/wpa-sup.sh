@@ -2,12 +2,20 @@
 #Easy WPA Supplicant connection script.
 #TODO: let user choose wifi interface from a list
 #TODO: let user choose Network from a list
-#
-#https://rxtx-linux.googlecode.com/
-#
 
-echo "Enter WPA Passphrase, Network SSID and Wifi card name"
-read mypassphrase myssid interface
+echo "Enter WPA Passphrase"
+read mypassphrase
+
+echo "Enter network name (ESSID)"
+read myssid
+
+echo "Enter wifi card name (leave blank for default: wlan0)"
+read interface
+
+if [ "$interface" = "" ]
+	then interface="wlan0"
+fi
+
 
 echo "Calculating PSK...."
 mypsk=`wpa_passphrase $mypassphrase $myssid | sed -n 4p | sed -e 's/\tpsk=//g'`
