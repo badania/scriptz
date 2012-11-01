@@ -71,12 +71,18 @@ fi
 
 #Setup Firefox Addons
 function SetupFFAddons() {
-zenity --question --width=350 --height=100 --title "Modules complémentaires de Iceweasel" --text "Le navigateur web Iceweasel (basé sur Mozilla Firefox) dispose de nombreuses extensions permettant d'ajouter des fonctionnalités. Certaines extensions sont activées par défaut, cependant, si vous souhaitez activer d'autres extensions préinstallées, vous pouvez le faire maintenant. Souhaitez vous choisir les extensions à activer?"
+zenity --question --width=350 --height=100 --title "Modules complémentaires pour Firefox/Iceweasel" --text "Le navigateur web Iceweasel (basé sur Mozilla Firefox) dispose de nombreuses extensions permettant d'ajouter des fonctionnalités. Certaines extensions sont activées par défaut, cependant, si vous souhaitez activer d'autres extensions préinstallées, vous pouvez le faire maintenant. Souhaitez vous choisir les extensions à activer?"
 if [ $? = 0 ]
 	then firefox "about:addons"
 fi
 }
 
+#Setup privacy options
+function PrivacySettings() {
+zenity --question --width=500 --height=100 --title "Paramètres du journal d'activités" --text "Le programme Zeitgeist tient à jour un journal des activités effectuées sur l'ordinateur (fichiers ouverts, applications lancées...) pour vous permettre de les retrouver et d'y accéder rapidement. Ce journal est par exemple utilisé par le lanceur <b>Synapse</b> et est consultable via l'application <b>Journal d'activités</b>. Vous pouvez modifier les paramètres d'enregistrement des activités (empêcher l'enregistrement des activités concernant certains types de fichiers, certains répertoires, ou le désactiver complètement). Voulez-vous le faire maintenant?"
+if [ $? = 0 ]
+	then activity-log-manager
+fi
 
 #Run functions in this order
 SetupUsers
@@ -89,7 +95,10 @@ SetupScreenPrefs
 SetupAutostart
 RegisterXmpp
 SetupFFAddons
-
+PrivacySettings
+InstallProprietary #TODO dropbox, flash, drivers
+SetupSoftwareSources #TODO
+HowToHelp #TODO donations, bug reports, ideas, goodies
 
 
 #detect available RAM, to suggest lightweight applications if necessary.
