@@ -4,6 +4,7 @@
 
 USERAGENT="Mozilla/4.0, debscreenshotgrabber"
 #PACKAGES=
+NEWFILES=""
 
 for PACKAGE in pybackpack osmo evolution icedove iceweasel owncloud filezilla synapse volumeicon-alsa xpad xfce4-power-manager gtk-redshift network-manager-gnome tint2 gnome-terminal nautilus audacious liferea pidgin iceweasel transmission-gtk file-roller mousepad gedit eog lxappearance bleachbit eog gnome-control-center pdfmod gnome-system-monitor evince icedove soundjuicer brasero gnome-screenshot gnome-activity-journal
 do
@@ -11,7 +12,10 @@ do
 	do FILENAME=$PACKAGE-`basename $SCREENSHOT`
 		if [ -f $FILENAME ]
 		then echo "File $FILENAME already exists, skipping..."
-		else wget -U "$USERAGENT" -nv -O $FILENAME http://screenshots.debian.net/$SCREENSHOT; sleep 3;
+		else wget -U "$USERAGENT" -nv -O $FILENAME http://screenshots.debian.net/$SCREENSHOT; NEWFILES="$NEWFILES $FILENAME"; sleep 3;
 		fi
 	done
 done
+
+echo "Newly retrieved files: $NEWFILES"
+echo "Packages without screenshots: "
