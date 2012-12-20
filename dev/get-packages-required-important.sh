@@ -1,5 +1,4 @@
 #!/bin/bash
-#This script lists packages that are priority required and important.
-#https://rxtx-linux.googlecode.com/
+#Description: lists packages that have priority required and important.
 
 aptitude search -F'%p' ~prequired ~pimportant
