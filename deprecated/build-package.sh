@@ -1,5 +1,5 @@
 #!/bin/bash
-#Builds a package from a directory.
+#Description: Builds a package from a directory. DIRTY, use devscripts
 #TODO: check if directory contains DEBIAN/control
 #TODO: automatic lintian check
 #TODO: ignore .git directories
