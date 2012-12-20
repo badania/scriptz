@@ -1,5 +1,6 @@
 #!/bin/sh
-#from https://help.github.com/articles/changing-author-info
+#Description: change
+#Source: https://help.github.com/articles/changing-author-info
 
 git filter-branch --env-filter '
 
@@ -8,7 +9,7 @@ am="$GIT_AUTHOR_EMAIL"
 cn="$GIT_COMMITTER_NAME"
 cm="$GIT_COMMITTER_EMAIL"
 
-if [ "$GIT_COMMITTER_EMAIL" = "nodiscc@gmail.com" ]
+if [ "$GIT_COMMITTER_EMAIL" = "$GITEMAIL" ]
 then
     cn="badsuperblock"
     cm="badsuperblock@telecom.dmz.se"
