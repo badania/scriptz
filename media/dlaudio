@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ ! -x `which ffmpeg` ]
+	then echo "ffmpeg is not available. aborting."
+	exit 1
+elif [ ! -x `which cclive` ]
+	then echo "cclive is not available. aborting."
+	exit 1
+elif [ "$2" != "" ]
+	then echo "Only one argument can be passed. aborting."
+	exit 1
+fi
+
+cclive $1 --format best -t 's/\ /_/g' --continue --filename-format=%h_%i-%t.%s \
+--exec "ffmpeg -i %n -ab 320k -ar 44100 %n.mp3" --exec export VIDFILE="%n"
+
+if [ $? = 1 ]
+	then echo "Oops. There be errors"
+	exit 1
+elif [ $? = 0 ]
+	then rm ="%n"
+fi
+

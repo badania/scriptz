@@ -1,0 +1,19 @@
+#!/bin/bash
+#CHECK FOR ADMIN RIGHTS
+RIGHTS=`whoami`
+
+#IF NOT ROOT, WARN AND EXIT.
+if [ "$RIGHTS" = "root" ];
+then true;
+else zenity --info --title "Privilèges" --text "Accès refusé. Vous devez avoir les privilèges administrateur pour lancer ce programme."; exit 0;
+fi
+
+#WARN AND ASK CONFIRMATION
+zenity --question  --text "Forcer l'ouverture du tiroir? Le volume va être démonté de force. Les opérations en cours sur le CD vont échouer."
+
+#IF USER ANSWERED YES, FORCE UNMOUNT AND EJECT
+if [ $? = 0 ]; then
+umount -fl /dev/cdrom; sleep 1; eject; else
+exit 0
+fi
+

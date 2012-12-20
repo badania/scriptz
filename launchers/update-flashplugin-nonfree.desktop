@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Update Adobe Flash
+Comment=Update the Adobe Flash plugin
+Name=Mettre à jour Adobe Flash
+Comment=Mettre à jour le plugin Adobe Flash
+Exec=rxtx-update-flashplugin
+TryExec=rxtx-update-flashplugin
+Categories=System
+Terminal=true
+Type=Application
+Icon=flashplayer
+NoDisplay=false
