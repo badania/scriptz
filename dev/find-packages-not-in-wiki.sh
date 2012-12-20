@@ -1,6 +1,6 @@
 #!/bin/bash
-#Look for packages that are references in the distro's package list, but not in the wiki.
-#https://rxtx-linux.googlecode.com/
+#Look for packages that are referenced in rxtx.list.chroot , but not in the wiki.
+#License: 
 
 packagelistsdir="~/git/rxtx-linux/live-build/config/packagelists/"
 for pattern in `cat "$packagelistsdir"/rxtx.list`; 
