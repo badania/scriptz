@@ -1,17 +1,37 @@
 #!/bin/bash
 #finds git repositories on the system
-#TODO: allow selecting base directory
+USAGE="USAGE: `basename $0` [OPTION]
+    -d /search/path    only search for repositories in /search/path
+    -r                 also show remote addresses
+    -c                 check for available updates
+    -p                 try pushing to remote
+    -u                 update (pull) from repositories"
+
 FIND_DIR="/home/"
 
-#specify directory to look up with -d
-while getopts ":d:r" opt; do
+
+while getopts ":d:rcuhp" opt; do
   case $opt in
     d)
-      FIND_DIR="$OPTARG" >&2
+      FIND_DIR="$OPTARG"
       ;;
     r)
-      REMOTES="1" >&2
+      REMOTES="1"
       ;;
+    c)
+     CHECK="1"
+     ;;
+    u)
+     CHECK="1"
+     UPDATE="1"
+     ;;
+    h)
+     echo "$USAGE"
+     exit 0
+     ;;
+    p)
+     PUSH="1"
+     ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
@@ -31,7 +51,7 @@ then
 fi
 
 #print dir
-echo "Searching for git repositories in $FIND_DIR ..." >&2
+echo -e "\033[00;32mSearching for git repositories in $FIND_DIR ...\033[00m" >&2
 
 #create array
 REPOS=()
@@ -45,13 +65,39 @@ done
 #print repos list
 for DIR in ${REPOS[@]}
 do
-	REMOTE=`echo "- "; grep "url" $DIR/.git/config 2>/dev/null | awk -F " " '{print $3}'`
+	REMOTE=`grep "url" $DIR/.git/config 2>/dev/null | awk -F " " '{print $3}'`
+
 	if [ "$REMOTES" = "1" ]
 	then
-		echo $DIR $REMOTE
+		echo "$DIR - $REMOTE"
 	else
 		echo $DIR
 	fi
-done
 
-echo $REMOTES
+	if [ "$CHECK" = "1" ]
+	then
+		cd $DIR
+		git remote update &>/dev/null
+		git status | grep --color=always "Your branch is"
+	fi
+
+	if [ "$PUSH" = "1" ]
+	then
+		cd $DIR
+		git status | grep "Your branch is ahead"
+		BRANCHAHEAD=$?
+		if [ $BRANCHAHEAD -eq 0 ]
+		then
+			echo -e "\033[00;32mTrying to push from $DIR ...\033[00m" >&2
+			git push
+		fi
+	fi
+
+	if [ "$UPDATE" = "1" ]
+	then
+		cd $DIR
+		git pull -q
+	fi
+
+
+done
