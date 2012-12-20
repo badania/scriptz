@@ -1,5 +1,5 @@
 #!/bin/sh
-#create a 200px thumb for each png image here, write it in a thumbs/ subdir.
+#Description: create a 200px thumbnail for each .png image here, write it in a thumbs/ subdir.
 
 mkdir thumbs
 for image in *.png; do
