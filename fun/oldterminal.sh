@@ -1,5 +1,9 @@
 #!/bin/bash
-#needs xscreensaver-data-extra
+#Inspired from cathode. You will need xscreensaver and xscreensaver-data-extra
+#packages
+#Source:
+#License: WTFPL
+
 /usr/lib/xscreensaver/apple2 -text -fast -bs -program bash
 
 #have fun!
