@@ -9,12 +9,12 @@ am="$GIT_AUTHOR_EMAIL"
 cn="$GIT_COMMITTER_NAME"
 cm="$GIT_COMMITTER_EMAIL"
 
-if [ "$GIT_COMMITTER_EMAIL" = "$GITEMAIL" ]
+if [ "$GIT_COMMITTER_EMAIL" = "falken@grutula" ]
 then
     cn="nodiscc"
     cm="nodiscc@gmail.com"
 fi
-if [ "$GIT_AUTHOR_EMAIL" = "badsuperblock@telecom.dmz.se" ]
+if [ "$GIT_AUTHOR_EMAIL" = "falken@grutula" ]
 then
     an="nodiscc"
     am="nodiscc@gmail.com"
