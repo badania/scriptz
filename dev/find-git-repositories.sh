@@ -1,5 +1,9 @@
 #!/bin/bash
-#finds git repositories on the system
+#Finds git repositories on the system, eventually update (pull) from remotes
+#License: MIT (http://opensource.org/licenses/MIT)
+#Copyright: Rxtx Project <nodiscc@gmail.com>
+#TODO: list/check/pull multiple branches
+
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path
     -r                 also show remote addresses
