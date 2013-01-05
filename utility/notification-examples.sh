@@ -1,7 +1,6 @@
 #!/bin/bash
 #Example notifications to use with notification-daemon. May work with
 #notify-osd, not tested.
-#https://rxtx-linux.googlecode.com/
 
 notify-send \
 -i gtk-help \

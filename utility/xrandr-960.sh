@@ -1,13 +1,9 @@
 #!/bin/bash
-#Script used to change resolution to a non-natively supported one.
+#Description: Script used to change resolution to a non-natively supported one.
 #Works on Intel cards.
-#
-#Thanks to barti_ddu
-#http://superuser.com/questions/347437/xorg-how-to-specify-a-non-standard-display-resolution
-#
-#https://rxtx-linux.googlecode.com/
-#https://creativecommons.org/licenses/by-nc-sa/3.0/
-#
+#License: MIT (http://opensource.org/licenses/MIT)
+#Copyright: Rxtx Project <nodiscc@gmail.com>
+#Thanks to barti_ddu at http://superuser.com/questions/347437
 #TODO other resolutions
 
 

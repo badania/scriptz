@@ -1,5 +1,7 @@
 #!/bin/bash
-#Easy WPA Supplicant connection script.
+#Description: Easy WPA Supplicant connection script.
+#License: MIT (http://opensource.org/licenses/MIT)
+#Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: let user choose wifi interface from a list
 #TODO: let user choose Network from a list
 

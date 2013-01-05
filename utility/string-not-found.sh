@@ -1,6 +1,10 @@
 #!/bin/bash
-#takes items from a list ($1) and searches these items in a second file ($2)
-#If an item is not found in the second file, output an error
+#Description: takes items from a list ($1) and searches for these items
+#in a second file ($2). If an item is not found in the second file, output
+#an error
+#License: MIT (http://opensource.org/licenses/MIT)
+#Copyright: Rxtx Project <nodiscc@gmail.com>
+
 ITEM_LIST="$1"
 FILE_TO_SEARCH="$2"
 

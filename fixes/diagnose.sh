@@ -6,8 +6,8 @@ USERHOME="$HOME"
 
 echo "
 System diagnostic script 0.9
-Rxtx Linux project
-nodiscc@gmail.com" | tee $DIAGFILE
+Rxtx Linux Project
+http://telecom.dmz.se/dokuwiki/rxtx" | tee $DIAGFILE
 
 
 

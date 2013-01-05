@@ -1,5 +1,5 @@
 #!/bin/bash
-#Imports gnome-terminal colors from Xresources/Xdefaults
+#Description: Imports gnome-terminal colors from Xresources/Xdefaults
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #Thanks to u/evaryont at http://redd.it/15z69z
 #License: MIT (http://opensource.org/licenses/MIT)
