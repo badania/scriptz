@@ -7,17 +7,18 @@
 #TODO: test if we are in a pts/tty. If not, use zenity as a frontend (if [ `tty` != "*/dev/*" ......)
 #TODO: send title as detected by quvi (%t) to mplayer (-title) or vlc (--meta-title)
 
-#TODO SOURCE="" #can be any of Webpage, Netscape/Firefox/Delicious bookmark format (supports tags), Simple list
+#TODO SOURCE="" #can be any of Webpage, Netscape/Firefox/Delicious bookmark format (supports tags), Simple list, or single URL
 #TODO QUALITY="" #can be any of low/medium/high
 USAGE="USAGE: `basename $0` [download|stream] /path/to/bookmarks/file.html [/path/to/download/dir/] [tag]"
-ACTION="$1"
-BOOKMARKFILE="$2"
-DEST_DIR="$3"
-TAGS="$4"
-SUPPORTEDSITES=`cclive --support | tr "\n" "\|" | awk 'sub(".$", "")'`
+ACTION="$1" #TODO can be any of download_media , stream, create_playlist, save_page
+BOOKMARKFILE="$2" #TODO only applies if source is a bookmark file or list
+DEST_DIR="$3" #TODO only applies if action is to download or save_page
+TAGS="$4" #TODO: only applies if source is a bookmarks file
+SUPPORTEDSITES=`cclive --support | tr "\n" "\|" | awk 'sub(".$", "")'` #TODO: only applies if action is media_download
 #PLAYCOMMAND="vlc --playlist-enqueue %u &"
-PLAYCOMMAND="mplayer %u -title %t"
+PLAYCOMMAND="mplayer %u -title %t" #TODO: only applies if action is stream
 #PLAYCOMMAND="vlc --playlist-enqueue %u"
+
 RED="\033[00;31m"
 GREEN="\033[00;32m"
 ENDCOLOR="\033[00m"
