@@ -7,7 +7,6 @@
 XRESFILE="$1"
 TEMPFILE=""
 ARRAY=""
-CPP_STYLE=""
 
 grep -q "define" "$XRESFILE"
 if [ "$?" = 0 ]
