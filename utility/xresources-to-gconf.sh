@@ -1,14 +1,26 @@
 #!/bin/bash
 #Imports gnome-terminal colors from Xresources/Xdefaults
 #Copyright: Rxtx Project <nodiscc@gmail.com>
+#Thanks to u/evaryont at http://redd.it/15z69z
 #License: MIT (http://opensource.org/licenses/MIT)
-#TODO: support getting Xresources colors from 'define' parameters, like "#define t_red #ff9da4"
 
 XRESFILE="$1"
+TEMPFILE=""
+ARRAY=""
+CPP_STYLE=""
+
+grep -q "define" "$XRESFILE"
+if [ "$?" = 0 ]
+	then echo "cpp-style file detected"
+	TEMPFILE=`mktemp`
+	cpp < "$XRESFILE" > "$TEMPFILE"
+	XRESFILE="$TEMPFILE"
+fi
+
 number=0
 while [ $number -lt 16 ]
 do
-        ARRAY=`echo $ARRAY ; grep -e "*color$number\:" $XRESFILE | awk '{print $2}'`
+        ARRAY=`echo $ARRAY ; egrep "*color$number\:" $XRESFILE | awk '{print $2}'`
         number=$(($number+1))
 done
 
@@ -34,4 +46,6 @@ echo "Colors set to $GCONFVALUE"
 echo "Foreground set to $FOREGROUNDVALUE"
 echo "Background set to $BACKGROUNDVALUE"
 
-ARRAY=""
+if [ -f "$TEMPFILE" ]
+	then rm "$TEMPFILE"
+fi
