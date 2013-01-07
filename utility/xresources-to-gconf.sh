@@ -19,13 +19,13 @@ fi
 number=0
 while [ $number -lt 16 ]
 do
-        ARRAY=`echo $ARRAY ; egrep "*color$number\:" $XRESFILE | awk '{print $2}'`
+        ARRAY=`echo $ARRAY ; egrep "URxvt.color$number|*color$number\:" $XRESFILE | awk '{print $NF}'`
         number=$(($number+1))
 done
 
 GCONFVALUE=`echo $ARRAY | sed 's/\ /\:/g'`
-X_BACKGROUNDVALUE=`grep background $XRESFILE | awk '{print $2}'`
-X_FOREGROUNDVALUE=`grep foreground $XRESFILE | awk '{print $2}'`
+X_BACKGROUNDVALUE=`grep background $XRESFILE | awk '{print $NF}'`
+X_FOREGROUNDVALUE=`grep foreground $XRESFILE | awk '{print $NF}'`
 
 BACKGROUNDVALUE_PART1=${X_BACKGROUNDVALUE:1:2}
 BACKGROUNDVALUE_PART2=${X_BACKGROUNDVALUE:3:2}
