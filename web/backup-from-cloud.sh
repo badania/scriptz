@@ -73,12 +73,19 @@ fi
 
 REDDIT_SESSION=`grep reddit_session reddit_cookie.txt |awk '{print $7}'`
 
-##Get authentication vars
-REDDIT_MODHASH=`cat cookie.json|jsonpipe|grep modhash | awk '{print $2}'`
-REDDIT_COOKIE=`cat cookie.json|jsonpipe|grep cookie | awk '{print $2}'`
+##Get authentication vars (old code. looks like it's not necessary)
+#REDDIT_MODHASH=`cat cookie.json|jsonpipe|grep modhash | awk '{print $2}'`
+#REDDIT_COOKIE=`cat cookie.json|jsonpipe|grep cookie | awk '{print $2}'`
 
 ##All my subscribed reddits
-curl -s -b reddit_session="$REDDIT_SESSION" 'https://pay.reddit.com/reddits/mine/.json?limit=2000' | jsonpipe | egrep "data/children/.*/data/url" | awk '{print $2}'
+MYSUBREDDITS=`curl -s -b reddit_session="$REDDIT_SESSION" 'https://pay.reddit.com/reddits/mine/.json?limit=2000' | jsonpipe | egrep "data/children/.*/data/url" | awk '{print $2}'`
+MYSUBREDDITS_FORMATTED=`\
+for SUBREDDIT in $MYSUBREDDITS;
+do
+	echo "URL: https://pay.reddit.com${SUBREDDIT}.rss" | sed 's/"//g'
+done`
+
+echo $MYSUBREDDITS_FORMATTED
 ###Subscribed reddits sidebars
 
 ##My saved threads
