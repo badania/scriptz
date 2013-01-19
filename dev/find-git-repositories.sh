@@ -5,13 +5,17 @@
 #TODO: list/check/pull multiple branches
 
 USAGE="USAGE: `basename $0` [OPTION]
-    -d /search/path    only search for repositories in /search/path
+    -d /search/path    only search for repositories in /search/path (default ~/)
     -r                 also show remote addresses
     -c                 check for available updates
     -p                 try pushing to remote
     -u                 update (pull) from repositories"
 
-FIND_DIR="/home/"
+FIND_DIR="~/"
+
+RED="\033[00;31m"
+GREEN="\033[00;32m"
+ENDCOLOR="\033[00m"
 
 
 while getopts ":d:rcuhp" opt; do
@@ -82,7 +86,10 @@ do
 	then
 		cd $DIR
 		git remote update &>/dev/null
-		git status | grep --color=always "Your branch is"
+#		git status | egrep --color=always "Your branch is|Untracked files"
+		if [[ `git status | egrep --color=always "Your branch is|Untracked files"` != "" ]]
+			then echo -e "${RED}Not up to date${ENDCOLOR}"
+		fi
 	fi
 
 	if [ "$PUSH" = "1" ]
