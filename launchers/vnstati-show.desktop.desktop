@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Network traffic statistics
+Comment=Display network traffic statistic graphs
+Name=Statistiques du trafic réseau
+Comment=Afficher les statistiques du trafic réseau
+Categories=Network;System
+Exec=rxtx-vnstati-show
+TryExec=rxtx-vnstati-show
+Terminal=true
+Type=Application
+Icon=nm-signal-75
+NoDisplay=false
+Name[fr_FR]=vnstati-show.desktop

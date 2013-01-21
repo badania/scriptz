@@ -1,0 +1,9 @@
+#!/bin/sh
+#toggle Openbox's "Show Desktop" mode on or off
+
+SHOWDESKTOPSTATUS=`wmctrl -m | tail -n 1 | awk '{print $7'}`
+if [ "$SHOWDESKTOPSTATUS" = "ON" ]
+	then wmctrl -k off
+elif [ "$SHOWDESKTOPSTATUS" = "OFF" ]
+	then wmctrl -k on
+fi
