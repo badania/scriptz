@@ -98,12 +98,12 @@ do
 		git remote update &>/dev/null
 		if [[ `git status | egrep "Your branch is ahead"` != "" ]]
 			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}";
-			if "$PUSH"="1"; then echo -e "${GREEN}Pushing to remote...${ENDCOLOR}"; git push; fi
+			if [ "$PUSH"="1" ]; then echo -e "${GREEN}Pushing to remote...${ENDCOLOR}"; git push; fi
 		elif [[ `git status | egrep "Untracked files"` != "" ]]
 			then echo -e "${RED}Not up to date (untracked files)${ENDCOLOR}"
 		elif [[ `git status | egrep "Your branch is behind"` != "" ]]
 			then echo -e "${RED}Not up to date (do a git pull)${ENDCOLOR}"
-			if "$UPDATE"="1"; then echo -e "${GREEN}Pulling from remote...${ENDCOLOR}"; git pull; fi
+			if [ "$UPDATE"="1" ]; then echo -e "${GREEN}Pulling from remote...${ENDCOLOR}"; git pull; fi
 		elif [[ `git status | egrep "not staged for commit"` != "" ]]
 			then echo -e "${RED}Not up to date (unstaged changes)${ENDCOLOR}"
 		fi
