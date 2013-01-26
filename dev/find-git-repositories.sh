@@ -4,11 +4,13 @@
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: list/check/pull multiple branches
 #TODO: print multiple remotes on one line
-#TODO: push/update when check returns an outdated repository. Else, do nothing.
+#TODO: quote DIR variables!
+#TODO: add a --no-color option
 
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path (default ~/)
     -r                 also show remote addresses
+    -o                 optimize (git repack && git prune) repositories
     -c                 check for available updates
     -p                 try pushing to remote
     -u                 update (pull) from repositories"
@@ -20,7 +22,7 @@ GREEN="\033[00;32m"
 ENDCOLOR="\033[00m"
 
 
-while getopts ":d:rcuhp" opt; do
+while getopts ":d:rcuhpo" opt; do
   case $opt in
     d)
       FIND_DIR="$OPTARG"
@@ -42,6 +44,9 @@ while getopts ":d:rcuhp" opt; do
     p)
      CHECK="1"
      PUSH="1"
+     ;;
+    o)
+     OPTIMIZE="1"
      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -93,30 +98,21 @@ do
 		git remote update &>/dev/null
 		if [[ `git status | egrep "Your branch is ahead"` != "" ]]
 			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}";
+			if $PUSH="1"; then echo -e "${GREEN}Pushing to remote...${ENDCOLOR}"; git push; fi
 		elif [[ `git status | egrep "Untracked files"` != "" ]]
 			then echo -e "${RED}Not up to date (untracked files)${ENDCOLOR}"
 		elif [[ `git status | egrep "Your branch is behind"` != "" ]]
 			then echo -e "${RED}Not up to date (do a git pull)${ENDCOLOR}"
+			if $UPDATE="1"; then echo -e "${GREEN}Pulling from remote...${ENDCOLOR}"; git pull; fi
+		elif [[ `git status | egrep "not staged for commit"` != "" ]]
+			then echo -e "${RED}Not up to date (unstaged changes)${ENDCOLOR}"
 		fi
 	fi
 
-	if [ "$PUSH" = "1" ]
+	if [ "$OPTIMIZE"="1" ]
 	then
 		cd $DIR
-		git status | grep "Your branch is ahead"
-		BRANCHAHEAD=$?
-		if [ $BRANCHAHEAD -eq 0 ]
-		then
-			echo -e "\033[00;32mTrying to push from $DIR ...\033[00m" >&2
-			git push
-		fi
+		echo -e "${GREEN}Optimizing repository...${ENDCOLOR}"
+		git repack && git prune
 	fi
-
-	if [ "$UPDATE" = "1" ]
-	then
-		cd $DIR
-		git pull -q
-	fi
-
-
 done
