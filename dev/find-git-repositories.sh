@@ -3,6 +3,7 @@
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: list/check/pull multiple branches
+#TODO: print multiple remotes on one line
 
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path (default ~/)
@@ -88,9 +89,12 @@ do
 	then
 		cd $DIR
 		git remote update &>/dev/null
-#		git status | egrep --color=always "Your branch is|Untracked files"
-		if [[ `git status | egrep --color=always "Your branch is|Untracked files"` != "" ]]
-			then echo -e "${RED}Not up to date${ENDCOLOR}"
+		if [[ `git status | egrep "Your branch is ahead"` != "" ]]
+			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}"
+		elif [[ `git status | egrep "Untracked files"` != "" ]]
+			then echo -e "${RED}Not up to date (untracked files)${ENDCOLOR}"
+		elif [[ `git status | egrep "Your branch is behind"` != "" ]]
+			then echo -e "${RED}Not up to date (do a git pull)${ENDCOLOR}"
 		fi
 	fi
 
