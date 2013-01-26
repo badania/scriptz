@@ -11,7 +11,7 @@ USAGE="USAGE: `basename $0` [OPTION]
     -p                 try pushing to remote
     -u                 update (pull) from repositories"
 
-FIND_DIR="~/"
+FIND_DIR="$HOME"
 
 RED="\033[00;31m"
 GREEN="\033[00;32m"
@@ -56,6 +56,8 @@ if [ ! -d $FIND_DIR ]
 then
 	echo "$FIND_DIR does not exist or is not a valid directory"
 	exit 1
+else
+	FIND_DIR=`readlink -f $FIND_DIR`
 fi
 
 #print dir
