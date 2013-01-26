@@ -4,6 +4,7 @@
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: list/check/pull multiple branches
 #TODO: print multiple remotes on one line
+#TODO: push/update when check returns an outdated repository. Else, do nothing.
 
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path (default ~/)
@@ -39,6 +40,7 @@ while getopts ":d:rcuhp" opt; do
      exit 0
      ;;
     p)
+     CHECK="1"
      PUSH="1"
      ;;
     \?)
@@ -90,7 +92,7 @@ do
 		cd $DIR
 		git remote update &>/dev/null
 		if [[ `git status | egrep "Your branch is ahead"` != "" ]]
-			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}"
+			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}";
 		elif [[ `git status | egrep "Untracked files"` != "" ]]
 			then echo -e "${RED}Not up to date (untracked files)${ENDCOLOR}"
 		elif [[ `git status | egrep "Your branch is behind"` != "" ]]
