@@ -109,7 +109,7 @@ do
 		fi
 	fi
 
-	if [ "$OPTIMIZE"="1" ]
+	if [ "$OPTIMIZE" = "1" ]
 	then
 		cd $DIR
 		echo -e "${GREEN}Optimizing repository...${ENDCOLOR}"
