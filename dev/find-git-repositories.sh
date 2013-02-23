@@ -3,9 +3,7 @@
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: list/check/pull multiple branches
-#TODO: print multiple remotes on one line
 #TODO: quote DIR variables!
-#TODO: add a --no-color option
 
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path (default ~/)
@@ -13,6 +11,7 @@ USAGE="USAGE: `basename $0` [OPTION]
     -o                 optimize (git repack && git prune) repositories
     -c                 check for available updates
     -p                 try pushing to remote
+    -n                 do not colorize output
     -u                 update (pull) from repositories"
 
 FIND_DIR="$HOME"
@@ -22,7 +21,7 @@ GREEN="\033[00;32m"
 ENDCOLOR="\033[00m"
 
 
-while getopts ":d:rcuhpo" opt; do
+while getopts ":d:rcuhpon" opt; do
   case $opt in
     d)
       FIND_DIR="$OPTARG"
@@ -40,6 +39,11 @@ while getopts ":d:rcuhpo" opt; do
     h)
      echo "$USAGE"
      exit 0
+     ;;
+    n)
+     RED=""
+     GREEN=""
+     ENDCOLOR=""
      ;;
     p)
      CHECK="1"
@@ -69,7 +73,7 @@ else
 fi
 
 #print dir
-echo -e "\033[00;32mSearching for git repositories in $FIND_DIR ...\033[00m" >&2
+echo -e "${GREEN}Searching for git repositories in $FIND_DIR ...${ENDCOLOR}" >&2
 
 #create array
 REPOS=()
