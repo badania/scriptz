@@ -98,6 +98,7 @@ SetupFFAddons
 PrivacySettings
 InstallProprietary #TODO dropbox, flash, drivers
 SetupSoftwareSources #TODO
+SetupBackup #TODO
 HowToHelp #TODO donations, bug reports, ideas, goodies
 
 
