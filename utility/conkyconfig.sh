@@ -22,6 +22,15 @@ GLOBALCONFIGFILESPATH="/usr/share/conky/configs"
 USERCONFIGFILESPATH="$HOME/.conky"
 TITLE="Conky: configuration"
 
+while getopts ":d:" opt; do
+	case $opt in
+	d)
+	  GLOBALCONFIGFILESPATH="$OPTARG"
+#	  echo "$OPTARG"
+	  ;;
+	esac
+done
+
 #Check/create config files directory
 if [ ! -d $USERCONFIGFILESPATH ]
 then
@@ -29,13 +38,15 @@ then
 fi
 
 #Display dialog
-SELECTEDFILE=`ls $GLOBALCONFIGFILESPATH/*.conkyrc | xargs zenity --title="$TITLE" --window-icon="/usr/share/icons/Faenza/apps/scalable/gnome-system-monitor.svg" --text "Sélectionnez le fichier de configuration à utiliser" --list --column "Fichier de configuration"`
-NEWCONFIG="$GLOBALCONFIGFILES/$SELECTEDFILE"
+AVAILABLEFILES=`find $GLOBALCONFIGFILESPATH -name *.conkyrc`
+FILESTODISPLAY=$(for FILE in `echo "$AVAILABLEFILES"`; do basename "$FILE"; done)
+SELECTEDFILE=`echo "$FILESTODISPLAY" | xargs zenity --title="$TITLE" --window-icon="/usr/share/icons/Faenza/apps/scalable/gnome-system-monitor.svg" --text "Sélectionnez le fichier de configuration à utiliser" --list --column "Fichier de configuration"`
+NEWCONFIG="${GLOBALCONFIGFILESPATH}/${SELECTEDFILE}"
 
 #If no file/invalid file selected, exit
-#if [ ! -f $NEWCONFIG ]
-#	then exit 1
-#fi
+if [ ! -f $NEWCONFIG ]
+	then exit 1
+fi
 
 #Create symlink to config file (replace if it exists)
 if [ -e ~/.conkyrc ]
