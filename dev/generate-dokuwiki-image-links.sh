@@ -12,6 +12,6 @@ NAMESPACE=":rxtx:"
 
 for IMAGE in $@
 do
-	PACKAGE=$(basename "$IMAGE)
+	PACKAGE=$(basename "$IMAGE")
 	echo "{{$NAMESPACE$PACKAGE?direct\&$THUMBNAILSIZE|}}"
 done
