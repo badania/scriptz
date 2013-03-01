@@ -1,0 +1,17 @@
+#!/bin/bash
+# Permanent command line prompt for todotxt-cli https://github.com/ginatrapani/todo.txt-cli
+# Licence: MIT License
+# Copyright 2013 rxtx project <nodiscc@gmail.com>
+# TODO: support command autocompletion from the provided todo_completion file
+#  * read http://stackoverflow.com/questions/4726695/bash-and-readline-tab-completion-in-a-user-input-loop
+#
+
+function TodoPrompt() {
+echo -n "todo\> "; read COMMAND
+if [[ "$COMMAND" != "q" ]]
+	then todo.sh $COMMAND; TodoPrompt
+	else exit
+fi
+}
+
+TodoPrompt
