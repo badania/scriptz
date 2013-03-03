@@ -2,7 +2,7 @@
 #Finds git repositories on the system, eventually update (pull) from remotes
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
-#TODO: list/check/pull multiple branches
+#TODO: list/check/pull multiple branches (use git branch -v ?)
 #TODO: quote DIR variables!
 
 USAGE="USAGE: `basename $0` [OPTION]
