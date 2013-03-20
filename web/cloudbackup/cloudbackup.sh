@@ -13,6 +13,11 @@
 # * Grooveshark
 #
 #TODO:
+# * COuld use a good rewrite!
+#   * separate modules in .backupmodule files
+#   * list available modules with --list-modules
+#   * put the variables (usernames;passwords) in a .config file
+#	* ....
 # * Redirect outputs to text files
 # * clear variables on exit
 # * Intercative mode: ask for services to backup, prompt for username/passwords
