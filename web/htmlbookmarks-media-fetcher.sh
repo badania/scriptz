@@ -1,8 +1,7 @@
 #!/bin/bash
 #Description: parses a netscape/mozilla/delicious HTML bookmark file for links that cclive(1) can download, allows selecting a tag, then downloads every media corresponding to that tag.
 #License: GPLv3
-#Copyright: (c) 2012 Rxtx Project <nodiscc@gmail.com>
-#TODO: Allow not only downloading media, but also text/html files like Scrapbook does
+#Copyright: (c) 2013 nodiscc <nodiscc@gmail.com>
 #TODO: report errors
 #TODO: test if we are in a pts/tty. If not, use zenity as a frontend (if [ `tty` != "*/dev/*" ......)
 #TODO: send title as detected by quvi (%t) to mplayer (-title) or vlc (--meta-title)
@@ -12,7 +11,25 @@ TAGS=""
 
 SOURCE="bookmarks" #can be an URL (use "url"), a plain text list (use "bookmarks") or a Netscape/Firefox/Delicious bookmark format - supports tags (use "bookmarks" too).
 #TODO: auto detect urls in $2
-USAGE="USAGE: `basename $0` [downloadmedia|stream|createplaylist|getlinks] /path/to/bookmarks/file.html [/path/to/download/dir/] [tag]"
+USAGE="USAGE: `basename $0` [downloadmedia|stream|createplaylist|getlinks] /path/to/bookmarks/file.html [/path/to/download/dir/] [tag]
+
+ACTIONS:
+	downloadmedia	Downloads all media (audio/video) from supported sites using cclive
+	stream			Streams all media (audio/video) from supported sites using quvi/a media player
+	createplaylist	Not yet implemented
+	getlinks		Creates a plain text file from all queried links
+	
+EXAMPLES:
+	`basename $0` downloadmedia /home/nodiscc/bookmarks.html /home/nodiscc/Video/ video
+	#Downloads all media from links tagged \"video\" to /home/nodiscc/Video/
+	
+	`basename $0` getlinks /home/nodiscc/bookmarks.html /home/nodiscc/Video/ freedom
+	#Outputs a list of links tagged \"freedom\" to a text file in /home/nodiscc/Video/
+	
+	`basename $0` stream /home/nodiscc/bookmarks.html music
+	#Streams all media from links tagged \"music\" using a media player (default mplayer)
+	
+"
 ACTION="$1"
 BOOKMARKFILE="$2"
 DESTDIR="$3"
@@ -40,7 +57,7 @@ if [ "$SOURCE" = "bookmarks" ] && [ ! -f "$BOOKMARKFILE" ]
 	then echo -e "${RED}Error: you did not specify a bookmarks.html file, or it is not valid${ENDCOLOR}"
 	echo "$USAGE"
 	exit 1
-fi
+fi 
 
 ##Check quality parameter
 if [ "$ACTION" = "downloadmedia" ] && [ "$QUALITY" = "best" ]
