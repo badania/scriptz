@@ -10,7 +10,7 @@ elif [ "$2" != "" ]
 	exit 1
 fi
 
-cclive $1 --format best -t 's/\ /_/g' --continue --filename-format=%h_%i-%t.%s \
+cclive "$1" --format best -t 's/\ /_/g' --continue --filename-format=%h_%i-%t.%s \
 --exec "ffmpeg -i %n -ab 320k -ar 44100 %n.mp3" --exec export VIDFILE="%n"
 
 if [ $? = 1 ]

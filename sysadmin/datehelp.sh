@@ -1,4 +1,5 @@
 #!/bin/bash
+#Description: help for `date` usage
 #source: http://redd.it/17ondq
 for F in {a..z} {A..Z} :z ::z :::z
 do
