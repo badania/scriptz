@@ -6,9 +6,16 @@
 #screenshots
 #external links
 #TODO: fix bad indentation an newlines in PACKAGE_LONGDESCR
+#TODO: allow overriding PACKAGE_LONGDESCR with a key like #Override: true, and get long description from lines starting with "# "
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #License: GPL (https://www.gnu.org/licenses/gpl)
 
+
+##PACKLIST Rules
+#The script takes live-build (http://live.debian.net) package lists as arguments.
+#There are several special fields allowed in package lists.
+#Name, Replace, Append, Resource, Details
+#TODO: Parse package lists to be usable in tasksel
 
 PACKLIST="$1"
 PACKREALNAME=`cat "$PACKLIST" | grep -e "^#Name" | cut -f 1 -d " " --complement`
@@ -40,7 +47,7 @@ echo
 
 
 #create screenshots
-for IMAGE in `find $SCREENSHOTDIR/uploaded/ $SCREENSHOTDIR/accepted/ -name *$MAINPACKAGE*`
+for IMAGE in `find $SCREENSHOTDIR/uploaded/ $SCREENSHOTDIR/accepted/ -name "*$MAINPACKAGE*"`
 do
         SCREENSHOT=$(basename "$IMAGE")
         echo "{{${NAMESPACE}${SCREENSHOT}?direct&$THUMBNAILSIZE|}}"
