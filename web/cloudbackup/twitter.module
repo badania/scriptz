@@ -1,0 +1,9 @@
+#Twitter
+##See twidge http://packages.debian.org/wheezy/twidge 
+##Buggy. On the first run you should be asked to authenticate with oauth
+#Save my tweets
+twidge lsarchive -a
+#Save my followers
+twidge lsfollowers
+#Save followed accounts
+twidge lsfollowing

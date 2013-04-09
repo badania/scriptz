@@ -1,0 +1,7 @@
+#Gmail
+##COntacts
+## Buggy. Doesnt display autohrization dialog.
+google contacts list \
+--fields=name,title,organization,email,phone,im,website,other,notes \
+--delimiter=" --- " --title="" | sed 's/ --- None//g' |sort \
+> Contacts-$GOOGLEUSER-`date +%d%m%y` 
