@@ -9,4 +9,4 @@ EXID=`unzip -qc $1 install.rdf | xmlstarlet sel \
     -t -v \
     "//rdf:Description[@about='urn:mozilla:install-manifest']/em:id"`
 
-unzip $1 -d ~/FFaddons/"$EXID"
+unzip $1 -d ~/"$EXID"

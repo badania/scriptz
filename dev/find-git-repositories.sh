@@ -4,6 +4,10 @@
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: list/check/pull multiple branches (use git branch -v ?)
 #TODO: quote DIR variables!
+#TODO: display repository name in bold for clarity
+#TODO: add a "quiet" option for push/pull operations
+#TODO: detect merge conflicts before push/pull
+#TODO: display a summary of updated repos (push/pull)
 
 USAGE="USAGE: `basename $0` [OPTION]
     -d /search/path    only search for repositories in /search/path (default ~/)
