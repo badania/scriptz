@@ -1,9 +1,9 @@
 #!/bin/bash
-#Description: Look for packages that are referenced in rxtx.list.chroot , but not in the wiki.
+#Description: Look for words that are listed in $1/* , but not in $2/*.
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 
-USAGE="USAGE: `basename $0` /path/to/package/lists/ /path/to/wiki/pages/ [wiki_pages_to_exclude]"
+USAGE="USAGE: `basename $0` /path/to/lists/ /path/to/other/lists/ [other_lists_to_exclude]"
 PACKAGELISTSDIR="$1"
 WIKIPATH="$2"
 EXCLUDE_PATTERN=""
