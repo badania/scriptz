@@ -1,0 +1,15 @@
+#Identica
+##found at http://www.splitbrain.org/blog/2010-11/30-backup_your_identi.ca_statuses_with_xmlstarlet_and_8_lines_of_bash
+##Alternatively: do it using twidge http://packages.debian.org/wheezy/twidge
+##Save my posts
+num=$(xmlstarlet sel --net -t -m "//user" -v "statuses_count" "http://identi.ca/api/users/show/$IDENTICA_USER.xml")
+pages=$((num / 200))
+
+for page in $(seq 1 $((pages + 1)))
+	do
+	xmlstarlet sel --net -t -m "//status" -v "created_at" -o " " -v "text" -n "http://identi.ca/api/statuses/user_timeline/$IDENTICA_USER.xml?count=200&page=${page}"
+	sleep 5
+done
+
+##Save my subscriptions
+##...

@@ -1,0 +1,8 @@
+
+#Last.fm
+#Reference http://www.lastfm.fr/api/
+#Get the user's 200 most recently scrobbled tracks
+#bug: outputs in us-ascii encoding, please convert to utf-8
+curl "http://ws.audioscrobbler.com/2.0/user/?method=user.getRecentTracks&user=$LASTFM_USER&limit=200&format=json&api_key=$LASTFM_APIKEY" | \
+jsonpipe |egrep "artist/\#text|/name" | cut -f 1 --complement | paste - - | \
+sed 's/\"\t\"/\ \-\ /g' | sed 's/\"//g'

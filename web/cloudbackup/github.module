@@ -1,0 +1,9 @@
+### Github
+
+
+#list watched repos
+GH_WATCHED=`curl -s https://api.github.com/users/$GHUSER/watched | jsonpipe | egrep "(^/[0-9]*/html_url|^/[0-9]*/description|^/[0-9]*/homepage)" | awk -F "\"" '{print $2}'`
+#list own repos
+GH_REPOS=`curl -s https://api.github.com/users/$GHUSER/repos | jsonpipe | egrep "(^/[0-9]*/html_url|^/[0-9]*/description|^/[0-9]*/homepage)" | awk -F "\"" '{print $2}'`
+#list and download tarballs
+#TODO: curl -i -s https://api.github.com/repos/$FULL_NAME/tarball/master |grep Location | cut -b 1-10 --complement

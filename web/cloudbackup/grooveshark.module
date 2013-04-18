@@ -1,0 +1,5 @@
+
+#Grooveshark
+##Get user playlists
+##bug: cleanup output
+curl -d "username=$GROOVESHARK_USER" "http://gsplaylists.com/playlists"|html2text

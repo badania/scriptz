@@ -1,0 +1,32 @@
+#Reddit
+REDDIT_SAVED_THREADS_FILE="reddit_saved_threads-`date +%Y-%m-%d_%Hh%M`.txt"
+REDDIT_SAVED_URLS_FILE="reddit_saved_urls-`date +%Y-%m-%d_%Hh%M`.txt"
+REDDIT_SUBREDDITS_FILE="reddit_subreddits-`date +%Y-%m-%d_%Hh%M`.txt"
+REDDIT_SUBREDDITS_RSS_FILE"reddit_subreddits_rss-`date +%Y-%m-%d_%Hh%M`.txt"
+
+##Login
+curl -d user="$REDDIT_USER" -d passwd="$REDDIT_PASSWD" -c reddit_cookie.txt https://pay.reddit.com/api/login
+
+grep "reddit_session" reddit_cookie.txt
+if [ ! "$?" = "0" ]
+	then echo -e "${RED}Error: reddit login failed."
+	exit 1
+fi
+
+REDDIT_SESSION=`grep reddit_session reddit_cookie.txt |awk '{print $7}'`
+
+##All my subscribed reddits
+REDDIT_SUBREDDITS=`curl -s -b reddit_session="$REDDIT_SESSION" 'https://pay.reddit.com/reddits/mine/.json?limit=2000' | jsonpipe | egrep "data/children/.*/data/url" | awk '{print $2}'`
+REDDIT_SUBREDDITS_FORMATTED_RSS=`for SUBREDDIT in $MYSUBREDDITS; do echo "URL: https://pay.reddit.com${SUBREDDIT}.rss" | sed 's/"//g'; done`
+
+##All my "saved" threads"
+REDDIT_SAVED_THREADS=`curl -s -b reddit_session="$REDDIT_SESSION" 'http://www.reddit.com/user/badsuperblock/saved.json?limit=2000'`
+REDDIT_SAVED_THREADS_FORMATTED=`echo $MYSAVEDTHREADS |jsonpipe | egrep "data/children/.*/data/permalink" | awk '{print $2}'`
+REDDIT_SAVED_URLS_FORMATTED=`echo $MYSAVEDTHREADS |jsonpipe | egrep "data/children/.*/data/url" | awk '{print $2}'`
+
+##All my comments
+#TODO: parse it!
+REDDIT_COMMENTS=`curl -s -b reddit_session="$REDDIT_SESSION" 'http://www.reddit.com/user/badsuperblock.json?limit=2000'`
+
+###TODO: Subscribed reddits sidebars
+###TODO: print variables to files
