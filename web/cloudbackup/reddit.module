@@ -2,10 +2,11 @@
 REDDIT_SAVED_THREADS_FILE="reddit_saved_threads-`date +%Y-%m-%d_%Hh%M`.txt"
 REDDIT_SAVED_URLS_FILE="reddit_saved_urls-`date +%Y-%m-%d_%Hh%M`.txt"
 REDDIT_SUBREDDITS_FILE="reddit_subreddits-`date +%Y-%m-%d_%Hh%M`.txt"
-REDDIT_SUBREDDITS_RSS_FILE"reddit_subreddits_rss-`date +%Y-%m-%d_%Hh%M`.txt"
+REDDIT_SUBREDDITS_RSS_FILE="reddit_subreddits_rss-`date +%Y-%m-%d_%Hh%M`.txt"
 
 ##Login
-curl -d user="$REDDIT_USER" -d passwd="$REDDIT_PASSWD" -c reddit_cookie.txt https://pay.reddit.com/api/login
+#curl -d user="$REDDIT_USER" -d passwd="$REDDIT_PASSWD" -c reddit_cookie.txt https://pay.reddit.com/api/login
+curl -d user="$REDDIT_USER" -d passwd="$REDDIT_PASSWD" https://pay.reddit.com/api/login >| reddit_cookie.txt
 
 grep "reddit_session" reddit_cookie.txt
 if [ ! "$?" = "0" ]
