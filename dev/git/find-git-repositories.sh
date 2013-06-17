@@ -2,6 +2,7 @@
 #Finds git repositories on the system, eventually update (pull) from remotes
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
+#TODO: initialize variables to their defaults !
 #TODO: list/check/pull multiple branches (use git branch -v ?)
 #TODO: quote DIR variables!
 #TODO: display repository name in bold for clarity
@@ -104,6 +105,7 @@ do
 	then
 		cd $DIR
 		git remote update &>/dev/null
+		git fetch &>/dev/null
 		if [[ `git status | egrep "Your branch is ahead"` != "" ]]
 			then echo -e "${RED}Not up to date (do a git push)${ENDCOLOR}";
 			if [ "$PUSH"="1" ]; then echo -e "${GREEN}Pushing to remote...${ENDCOLOR}"; git push; fi
