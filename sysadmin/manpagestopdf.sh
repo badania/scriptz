@@ -8,7 +8,7 @@ SYSADMIN_COMMANDS="addgroup cd mv cp rm du df rename touch delgroup adduser delu
 
 TEXTHANDLING_COMMANDS="awk cat cut grep head tail echo less sed tr wc ascii cmp comm column dirname fmt strings wdiff paste nl split sort shuf tee sponge readlink nl"
 
-MISC_COMMANDS="apropos inotifywait xclipboard xclip hier watch wmctrl yes pdfimages enscript ps2pdf chm2pdf pdfimages pdftotext pdfunite date xdg-open svn git pv gedit gnupg shuff"
+MISC_COMMANDS="apropos inotifywait xclipboard xclip hier watch wmctrl yes pdfimages enscript ps2pdf chm2pdf pdfimages pdftotext pdfunite date xdg-open svn git pv gedit gnupg shuff dialog whiptail"
 
 PACKAGEMANAGEMENT_COMMANDS="apt-cache apt-get aptitude dpkg dpkg-divert"
 
