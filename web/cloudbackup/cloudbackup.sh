@@ -4,22 +4,22 @@
 #and of course grep, awk, cut, sed, coreutils...
 
 #Global variables
-MODULES_PATH=`dirname $0`
+export MODULES_PATH=`dirname $0`
 
 #Usernames
-GITHUB_USER=""
-DEVIANTART_USER=""
-GOOGLE_USER=""
-VIMEO_USER=""
-LASTFM_USER=""
+export GITHUB_USER=""
+export DEVIANTART_USER=""
+export GOOGLE_USER=""
+export VIMEO_USER=""
+export LASTFM_USER=""
 
-IDENTICA_USER=""
-REDDIT_USER=""
-GROOVESHARK_USER=""
+export IDENTICA_USER=""
+export REDDIT_USER="badsuperblock"
+export GROOVESHARK_USER=""
 
 #Passwords and keys
-LASTFM_APIKEY="9b6009eca365ded3a03c2b9673d54eb9"
-REDDIT_PASSWD=""
+export LASTFM_APIKEY="9b6009eca365ded3a03c2b9673d54eb9"
+export REDDIT_PASSWD="ahWoChaemij1Uba"
 
 
 while getopts ":m:l" opt; do
