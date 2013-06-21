@@ -4,9 +4,9 @@
 #TODO: convert all _ in program names to " "
 
 #define what manpages, files etc. we want
-SYSADMIN_COMMANDS="addgroup cd mv cp rm du df rename touch delgroup adduser deluser groupadd groupdel useradd userdel dmsetup taskset insserv rcconf update-rc.d at lastb ls w who wtmp chage chmod chown chroot df dmesg getfacl setfacl install lsof lspci lsusb mkfs ntfsfix proc ps pstree top uptime vmstat signal man xargs faillog mktemp ltrace find locate update-alternatives pgrep bash htop fuser pkill killall atool tar gzip zip unrar 7z zcat zless logrotate ranger mount 7_signal pwd"
+SYSADMIN_COMMANDS="addgroup cd mv cp rm du df rename touch delgroup adduser deluser groupadd groupdel useradd userdel dmsetup taskset insserv rcconf update-rc.d at lastb ls w who wtmp chage chmod chown chroot df dmesg getfacl setfacl install lsof lspci lsusb mkfs ntfsfix proc ps pstree top uptime vmstat signal man xargs faillog mktemp ltrace find locate update-alternatives pgrep bash htop fuser pkill killall atool tar gzip zip unrar 7z zcat zless logrotate ranger mount 7_signal pwd which service"
 
-TEXTHANDLING_COMMANDS="awk cat cut grep head tail echo less sed tr wc ascii cmp comm column dirname fmt strings wdiff paste nl split sort shuf tee sponge readlink nl"
+TEXTHANDLING_COMMANDS="awk cat cut grep head tail echo less sed tr wc ascii cmp comm column dirname fmt strings wdiff paste nl split sort shuf tee sponge readlink nl cmp"
 
 MISC_COMMANDS="apropos inotifywait xclipboard xclip hier watch wmctrl yes pdfimages enscript ps2pdf chm2pdf pdfimages pdftotext pdfunite date xdg-open svn git pv gedit gnupg"
 
