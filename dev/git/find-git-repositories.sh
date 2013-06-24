@@ -1,5 +1,5 @@
 #!/bin/bash
-#Finds git repositories on the system, eventually update (pull) from remotes
+#Finds git repositories at a specified location, display some info, eventually update (push/pull) to/from remotes
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #TODO: initialize variables to their defaults !
@@ -8,6 +8,8 @@
 #TODO: display repository name in bold for clarity
 #TODO: add a "quiet" option for push/pull operations
 #TODO: detect merge conflicts before push/pull
+#TODO: find a better name
+#TODO: 
 #TODO: display a summary of updated repos (push/pull)
 
 USAGE="USAGE: `basename $0` [OPTION]
