@@ -9,7 +9,8 @@
 #TODO: add a "quiet" option for push/pull operations
 #TODO: detect merge conflicts before push/pull
 #TODO: find a better name
-#TODO: 
+#TODO: add an option to merge all remotes in a single remote named "all"
+#TODO: add an option to push/pull from ALL remotes
 #TODO: display a summary of updated repos (push/pull)
 
 USAGE="USAGE: `basename $0` [OPTION]
