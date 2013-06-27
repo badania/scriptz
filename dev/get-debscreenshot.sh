@@ -2,7 +2,7 @@
 #For each specified package, fetches a large screenshot from s.d.n and places it in a subdir
 #TODO: colorize output
 #TODO: report errors (CURLOPTS)
-
+#TODO: "no screenshots for ..." is broken
 
 USERAGENT="Mozilla/4.0, debscreenshotgrabber"
 SCREENSHOTSDIR="$PWD"
