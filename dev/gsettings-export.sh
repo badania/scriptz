@@ -3,7 +3,8 @@
 #that can be used to provide default GSettings values for vendor installations.
 #Needs libglib2.0-bin, bash, awk
 #Thanks to http://www.burtonini.com/blog/computers/gsettings-override-2011-07-04-15-45
-#https://rxtx-linux.googlecode.com/
+#Copyright: nodiscc <nodiscc@gmail.com>
+#License: CC-BY-SA
 
 #Create override file
 gsettings list-schemas | while read SCHEMA; do
