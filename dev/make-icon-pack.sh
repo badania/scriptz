@@ -1,4 +1,8 @@
 #!/bin/bash
+#Creates a freedesktop-compliant icon theme from a directory of SVG images.
+#Copyright: nodiscc <nodiscc@gmail.com>
+#License: CC-BY-SA
+
 USAGE="USAGE: `basename $0` svg_directory rendered_directory"
 SVGDIR="$1"
 RENDERDIR="$2"
