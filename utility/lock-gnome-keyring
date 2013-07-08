@@ -1,2 +1,2 @@
 #!/bin/bash
-python -c "import gnomekeyring;gnomekeyring.lock_sync('login')"
+python -c "import gnomekeyring;gnomekeyring.lock_sync('login');gnomekeyring.lock_sync('mozilla')"
