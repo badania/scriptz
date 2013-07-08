@@ -18,6 +18,11 @@ else
 	exit 1
 fi
 
+STATUS_CHECK=`/etc/init.d/vnstat status`
+if [ "$?" != "0" ]
+	then echo "Warning: the 'vnstat' service is not running. Data may be outdated."
+fi
+
 vnstati -s -i $NETIFACE -o "$OUTFILE"s.png &&
 vnstati -t -i $NETIFACE -o "$OUTFILE"t.png &&
 vnstati -m -i $NETIFACE -o "$OUTFILE"m.png &&
