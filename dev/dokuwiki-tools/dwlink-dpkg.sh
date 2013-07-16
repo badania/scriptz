@@ -6,22 +6,50 @@
 
 #Init variables
 MARKDOWN=""
-ARGS="$@"
+BULLETED=""
 USAGE="`basename $0` [OPTIONS] package names
 OPTIONS:
-    -m    enable markdown mode"
+    -m    enable markdown mode
+    -b    enable bullet list"
 
-if [ "$1" = "-h" -o "$1" = "" ]
-	then echo "$USAGE"
-fi
+#if [ "$1" = "-h" -o "$1" = "" ]
+#	then echo "$USAGE"
+#fi
 
-#Check if -m option (markdown mode) is set
-if [ "$1" = "-m" ]
-	then MARKDOWN=1
-	ARGS=`echo "$ARGS" | sed 's/-m //'`
+#Check options and select appropriate text for bullet lists
+while getopts ":mbh" opt; do
+	case $opt in
+	h)
+	echo "$USAGE"
+	exit 1
+	;;
+	m)
+	MARKDOWN="1"
+	;;
+	b)
+	BULLETED="1"
+	;;
+	/?)
+	echo "Invalid option: -$OPTARG" >&2
+	exit 1;;
+	esac
+done
+
+if [[ "$MARKDOWN" = "1" && "$BULLETED" = "1" ]]
+	then BULLET=" * "
+	shift
+elif [[ "$MARKDOWN" = "" && "$BULLETED" = "1" ]]
+	then BULLET="  * "
+	shift
+elif [[ "$MARKDOWN" = "1" && "$BULLETED" = "" ]]
+	then BULLET=""
+	shift
+elif [[ "$BULLETED" = "" ]]
+	then BULLET=""
 fi
 
 #Run
+ARGS="$@"
 for pack in $ARGS;
 do
 	PACKAGE_DESCR=`apt-cache show $pack | egrep "^Description" |egrep -v "Description-md5"| uniq | cut -d " " -f2-`;
@@ -29,7 +57,7 @@ do
 
 	if [ "$MARKDOWN" = "1" ]
 	then #Markdown syntax
-		echo -n "[$pack](http://packages.debian.org/wheezy/$pack) - $PACKAGE_DESCR";
+		echo -n "${BULLET}[$pack](http://packages.debian.org/wheezy/$pack) - $PACKAGE_DESCR";
 		if [ "$HOMEPAGE" != "" ]
 		then
 			echo " ([Site Officiel]($HOMEPAGE))"
@@ -37,7 +65,7 @@ do
 			echo
 		fi
 	else #Dokuwiki syntax
-		echo -n "[[http://packages.debian.org/wheezy/$pack|$pack]] - $PACKAGE_DESCR";
+		echo -n "${BULLET}[[http://packages.debian.org/wheezy/$pack|$pack]] - $PACKAGE_DESCR";
 		if [ "$HOMEPAGE" != "" ]
 		then
 			echo " ([[$HOMEPAGE|Site Officiel]])"
