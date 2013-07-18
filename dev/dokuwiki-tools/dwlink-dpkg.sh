@@ -1,5 +1,6 @@
 #!/bin/bash
 #Create a link to a package's page, using dokuwiki/markdown syntax.
+#Optionnally add bullets
 #Links are formatted like package_name_and_page_link - package_description - package_homepage
 #License: MIT (http://opensource.org/licenses/MIT)
 #Copyright: (c) 2013 nodiscc <nodiscc@gmail.com>
@@ -7,27 +8,36 @@
 #Init variables
 MARKDOWN=""
 BULLETED=""
+MODE=""
+OPTS_ENABLED="0"
 USAGE="`basename $0` [OPTIONS] package names
 OPTIONS:
     -m    enable markdown mode
-    -b    enable bullet list"
+    -b    enable bullet list
+    -w    only generate link to homepage"
 
 #if [ "$1" = "-h" -o "$1" = "" ]
 #	then echo "$USAGE"
 #fi
 
 #Check options and select appropriate text for bullet lists
-while getopts ":mbh" opt; do
+while getopts ":wmbh" opt; do
 	case $opt in
 	h)
 	echo "$USAGE"
 	exit 1
 	;;
+	w)
+	MODE="homepage_only"
+	OPTS_ENABLED="1"
+	;;
 	m)
 	MARKDOWN="1"
+	OPTS_ENABLED="1"
 	;;
 	b)
 	BULLETED="1"
+	OPTS_ENABLED="1"
 	;;
 	/?)
 	echo "Invalid option: -$OPTARG" >&2
@@ -35,18 +45,20 @@ while getopts ":mbh" opt; do
 	esac
 done
 
+#Load proper bullet style
 if [[ "$MARKDOWN" = "1" && "$BULLETED" = "1" ]]
 	then BULLET=" * "
-	shift
 elif [[ "$MARKDOWN" = "" && "$BULLETED" = "1" ]]
 	then BULLET="  * "
-	shift
 elif [[ "$MARKDOWN" = "1" && "$BULLETED" = "" ]]
 	then BULLET=""
-	shift
 elif [[ "$BULLETED" = "" ]]
 	then BULLET=""
 fi
+
+#Shift from 
+shift $OPTS_ENABLED
+
 
 #Run
 ARGS="$@"
@@ -57,16 +69,22 @@ do
 
 	if [ "$MARKDOWN" = "1" ]
 	then #Markdown syntax
-		echo -n "${BULLET}[$pack](http://packages.debian.org/wheezy/$pack) - $PACKAGE_DESCR";
-		if [ "$HOMEPAGE" != "" ]
+		if [[ "$MODE" != "homepage_only" ]]
+		then
+			echo -n "${BULLET}[$pack](http://packages.debian.org/wheezy/$pack) - $PACKAGE_DESCR";
+		fi
+		if [[ "$HOMEPAGE" != "" ]]
 		then
 			echo " ([Site Officiel]($HOMEPAGE))"
 		else
 			echo
 		fi
 	else #Dokuwiki syntax
-		echo -n "${BULLET}[[http://packages.debian.org/wheezy/$pack|$pack]] - $PACKAGE_DESCR";
-		if [ "$HOMEPAGE" != "" ]
+		if [[ "$MODE" != "homepage_only" ]]
+		then
+			echo -n "${BULLET}[[http://packages.debian.org/wheezy/$pack|$pack]] - $PACKAGE_DESCR";
+		fi
+		if [[ "$HOMEPAGE" != "" ]]
 		then
 			echo " ([[$HOMEPAGE|Site Officiel]])"
 		else
