@@ -10,22 +10,30 @@ MARKDOWN=""
 BULLETED=""
 MODE=""
 OPTS_ENABLED="0"
-USAGE="`basename $0` [OPTIONS] package names
+USAGE="Usage: `basename $0` [OPTIONS] [package names] [URL]
+Description: Generate dokuwiki or markdown links for debian packages or URLs
+
 OPTIONS:
     -m    enable markdown mode
     -b    enable bullet list
-    -w    only generate link to homepage"
+    -w    only generate link to homepage
+    -u    generate link for an URL
+    "
 
 #if [ "$1" = "-h" -o "$1" = "" ]
 #	then echo "$USAGE"
 #fi
 
 #Check options and select appropriate text for bullet lists
-while getopts ":wmbh" opt; do
+while getopts ":wmbhu" opt; do
 	case $opt in
 	h)
 	echo "$USAGE"
 	exit 1
+	;;
+	u)
+	MODE="url"
+	OPTS_ENABLED="1"
 	;;
 	w)
 	MODE="homepage_only"
@@ -62,6 +70,27 @@ shift $OPTS_ENABLED
 
 #Run
 ARGS="$@"
+
+##URL mode
+if [ $MODE = "url" ]
+then
+	for RESURL in $ARGS
+        do
+        	RESOURCETITLE=`wget "$RESURL" -q -O - | awk -vRS="</title>" '/<title>/{gsub(/.*<title>|\n+/,"");print;exit}'`
+        	
+        	if [ "$MARKDOWN" = "1" ]
+	        then #Markdown syntax
+	        	echo "${BULLET}[$RESOURCETITLE]($RESURL)"
+        	else #Dokuwiki syntax
+        		echo "${BULLET}[[$RESURL|$RESOURCETITLE]]"
+        	fi
+	done
+	exit 0
+fi
+
+
+
+##Debian Package mode
 for pack in $ARGS;
 do
 	PACKAGE_DESCR=`apt-cache show $pack | egrep "^Description" |egrep -v "Description-md5"| uniq | cut -d " " -f2-`;
