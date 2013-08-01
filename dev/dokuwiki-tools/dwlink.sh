@@ -72,7 +72,7 @@ shift $OPTS_ENABLED
 ARGS="$@"
 
 ##URL mode
-if [ $MODE = "url" ]
+if [ "$MODE" = "url" ]
 then
 	for RESURL in $ARGS
         do
