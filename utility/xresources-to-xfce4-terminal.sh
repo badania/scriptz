@@ -1,5 +1,6 @@
 #!/bin/bash
-#Description: Imports gnome-terminal colors from Xresources/Xdefaults
+#Description: Create XFCE Terminal colorschemes from Xresources/Xdefaults files
+#Place resulting .theme files in /usr/share/xfce4/terminal/colorschemes/
 #Copyright: Rxtx Project <nodiscc@gmail.com>
 #Thanks to u/evaryont at http://redd.it/15z69z
 #License: MIT (http://opensource.org/licenses/MIT)
@@ -10,7 +11,7 @@ TEMPFILE=""
 ARRAY=""
 
 grep -q "define" "$XRESFILE"
-if [ "$?" = 0 ]
+if [ "$?" = 0 ] #cpp-style file detected
 	then TEMPFILE=`mktemp`
 	cpp < "$XRESFILE" > "$TEMPFILE"
 	XRESFILE="$TEMPFILE"
@@ -23,7 +24,7 @@ do
         number=$(($number+1))
 done
 
-GCONFVALUE=`echo $ARRAY | sed 's/\ /\;/g'`
+PALETTEVALUE=`echo $ARRAY | sed 's/\ /\;/g'`
 X_BACKGROUNDVALUE=`grep background $XRESFILE | awk '{print $NF}'`
 X_FOREGROUNDVALUE=`grep foreground $XRESFILE | awk '{print $NF}'`
 
@@ -38,19 +39,18 @@ FOREGROUNDVALUE_PART2=${X_FOREGROUNDVALUE:3:2}
 FOREGROUNDVALUE_PART3=${X_FOREGROUNDVALUE:5:2}
 FOREGROUNDVALUE="#$FOREGROUNDVALUE_PART1$FOREGROUNDVALUE_PART2$FOREGROUNDVALUE_PART3"
 
-#gconftool-2 --set --type string /apps/gnome-terminal/profiles/Default/palette "$GCONFVALUE"
-#gconftool-2 --set --type string /apps/gnome-terminal/profiles/Default/foreground_color "$FOREGROUNDVALUE"
-#gconftool-2 --set --type string /apps/gnome-terminal/profiles/Default/background_color "$BACKGROUNDVALUE"
+
 THEMENAME=`basename $1 | awk -F "\." '{print $1}' 2>/dev/null`
 
 CONTENTS=`
 echo "[Scheme]"
 echo "Name=${THEMENAME}"
-echo "ColorPalette=$GCONFVALUE"
+echo "ColorPalette=$PALETTEVALUE"
 echo "ColorForeground=$FOREGROUNDVALUE"
 echo "ColorCursor=$FOREGROUNDVALUE"
 echo "ColorBackground=$BACKGROUNDVALUE"`
 
+echo "Writing ${THEMENAME}.theme file..."
 echo "${CONTENTS}" > "${THEMENAME}".theme
 
 if [ -f "$TEMPFILE" ]
