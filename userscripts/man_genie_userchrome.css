@@ -1,0 +1,94 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+/*
+ * #appmenu-button,
+ * #star-button,
+ * #feed-button,
+ * #go-button,
+ * #identity-box,
+ * .autocomplete-history-dropmarker,
+ * #appmenu-button,
+ * #appmenu-button:hover:not(:active):not([open]),
+ * #appmenu-button:hover:active,
+ * #appmenu-button[open],
+ * #scrollbutton-up,
+ * #scrollbutton-down,
+ * */
+
+{
+	-moz-appearance: none !important;
+}
+
+#content browser{margin-right:-16px!important;overflow-y:scroll;overflow-x:hidden;}
+
+.appmenu-button-container
+{
+	background: #1d1d1d !important;
+}
+#navigator-toolbox #TabsToolbar,
+{
+	background: #1d1d1d !important;
+}
+#appmenu-toolbar-button,
+.tabbrowser-tab
+{
+	font: 8pt "lime" !important;
+	background-color: #1d1d1d !important;
+	text-shadow: none !important;
+	color: #94a168 !important;
+}
+
+#urlbar
+{
+	height: 22px;
+}
+
+#go-button,
+#star-button,
+.tab-close-button,
+.autocomplete-history-dropmarker,
+.tabbrowser-tab[label="New Tab"]:not([blah]) .tab-icon-image,
+.tabbrowser-tab .tab-icon-image
+{
+	display: none !important;
+}
+
+.appmenu-toolbar-button
+{
+	background: #1d1d1d !important;
+	color: #676767 !important;
+	text-align: left !important;
+	margin: 0 3px 0 0px !important;
+	padding: 0 0 0 0 !important;
+}
+
+.toolbarbutton-menu-dropmarker
+{
+	display: none !important;
+}
+
+#navigator-toolbox #TabsToolbar
+{
+	background: #1d1d1d !important;
+	padding: 0px 0px !important;
+	height: 20px !important;
+}
+
+.tabbrowser-tab {
+	text-align: center !important;
+	color: #676767 !important;
+	background: #1d1d1d !important;
+	margin: -2px 0px 0px 0px !important;
+	padding: 0px 2px 0px 4px !important;
+	border: 0 !important;
+	border-left: 0px solid #676767 !important;
+	border-right: 0px solid #676767 !important;
+	border-radius: 0px !important;
+}
+.tabbrowser-tab[selected="true"] {
+	background: #1d1d1d !important;
+	border-left: 0px solid #676767 !important;
+	border-right: 0px solid #676767 !important;
+	padding: 0px 2px 0px 3px !important;
+	color: #ababab !important;
+}
