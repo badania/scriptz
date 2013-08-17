@@ -1,0 +1,20 @@
+#!/bin/bash
+PROMPT="todo ↳ "
+
+showprompt() {
+echo -n "$PROMPT"
+read COMMAND
+main
+}
+
+main() {
+if [ "$COMMAND" = "q" -o "$COMMAND" = "quit" -o "$COMMAND" = "exit" ]
+	then exit
+elif [ "$COMMAND" = "c" ]
+	then clear; showprompt
+else
+	todo.sh $COMMAND;  showprompt
+fi
+}
+
+showprompt
