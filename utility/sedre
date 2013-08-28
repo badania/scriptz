@@ -1,0 +1,4 @@
+#!/bin/bash
+#Description: replace all occurences of the first parameter with the second in the file specified in $3
+#Source: https://github.com/smotko/linux-tools
+sed -i "s/$1/$2/g" $3
