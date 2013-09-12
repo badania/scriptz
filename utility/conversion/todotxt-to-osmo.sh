@@ -3,8 +3,19 @@
 #(http://clayo.org/osmo/) task entries. Note that you must already have started
 #osmo one time and added a task entry to use this. Status: experimental! Do
 #a backup of your ~/.osmo directory before running this.
+
 #Source: https://github.com/nodiscc/scriptz
 #License: MIT (http://opensource.org/licenses/MIT)
+
+while getopts ":i" opt
+do
+case $opt in
+	i)
+	grep summary ~/.osmo/tasks_entries.xml | sed 's/<\/*summary>//g' | sed 's/^ *//g'
+	exit
+	;;
+esac
+done
 
 
 #Check if todotxt config file exists
