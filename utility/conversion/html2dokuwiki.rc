@@ -1,0 +1,51 @@
+#SOurce: https://www.dokuwiki.org/tips:htmltowiki
+# html2text config file to convert html to dokuwiki syntax
+# save it as ~/.html2textrc
+OL.indents = 2
+OL.vspace.before = 1
+OL.vspace.after = 1
+UL.indents = 2
+UL.vspace.before = 1
+UL.vspace.after = 1
+LI.disc_bullet = \ \ *
+LI.square_bullet = \ \ *
+LI.circle_bullet = \ \ *
+LI.custom1_bullet = \ \ *
+LI.custom2_bullet = \ \ *
+LI.custom3_bullet = \ \ *
+HR.marker = -
+H1.prefix = ======
+H1.suffix = ======
+H1.vspace.before = 1
+H1.vspace.after = 1
+H1.attributes = NONE
+H2.prefix = =====
+H2.suffix = =====
+H2.vspace.before = 1
+H2.vspace.after = 1
+H2.attributes = NONE
+H3.prefix = ====
+H3.suffix = ====
+H3.vspace.before = 1
+H3.vspace.after = 1
+H3.attributes = NONE
+H4.prefix = ===
+H4.suffix = ===
+H4.vspace.before = 1
+H4.vspace.after = 1
+H4.attributes = NONE
+H5.prefix = ==
+H5.suffix = ==
+H5.vspace.before = 1
+H5.vspace.after = 1
+H5.attributes = NONE
+H6.prefix = =
+H6.suffix = =
+H6.vspace.before = 1
+H6.vspace.after = 1
+H6.attributes = NONE
+PRE.vspace.before = 1
+PRE.vspace.after = 1
+PRE.indent.left = 2
+P.vspace.after = 1
+
