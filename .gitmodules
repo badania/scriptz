@@ -1,0 +1,12 @@
+[submodule "sysadmin/gkeyring"]
+	path = sysadmin/gkeyring
+	url = https://github.com/kparal/gkeyring
+[submodule "utility/weather"]
+	path = utility/weather
+	url = https://github.com/l-r/weather.sh
+[submodule "sysadmin/speetouch-keygen"]
+	path = sysadmin/speetouch-keygen
+	url = https://github.com/renatomartins/thomson-key
+[submodule "sysadmin/wifite"]
+	path = sysadmin/wifite
+	url = https://github.com/derv82/wifite
