@@ -10,3 +10,15 @@
 [submodule "sysadmin/wifite"]
 	path = sysadmin/wifite
 	url = https://github.com/derv82/wifite
+[submodule "web/mixcloud-downloader"]
+	path = web/mixcloud-downloader
+	url = https://github.com/peppy/mixcloud-downloader
+[submodule "sysadmin/tespeed"]
+	path = sysadmin/tespeed
+	url = https://github.com/Janhouse/tespeed
+[submodule "utility/bd"]
+	path = utility/bd
+	url = https://github.com/vigneshwaranr/bd
+[submodule "web/youtube_playlist"]
+	path = web/youtube_playlist
+	url = https://github.com/zaius/youtube_playlist
